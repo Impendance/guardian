@@ -1,0 +1,9 @@
+{
+    "command": {
+        "common": {
+            "ping": {
+                "response": "Pong! Bot Latency `{{bot_latency}}`ms. API Latency {{api_latency}}ms."
+            }
+        }
+    }
+}

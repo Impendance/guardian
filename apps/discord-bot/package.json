@@ -12,8 +12,10 @@
     "@sapphire/plugin-logger": "^3.0.3",
     "@sapphire/utilities": "^3.11.1",
     "@skyra/env-utilities": "^1.2.0",
+    "@skyra/i18next-backend": "^2.0.3",
     "colorette": "^2.0.20",
-    "discord.js": "^14.10.2"
+    "discord.js": "^14.10.2",
+    "i18next": "^23.2.3"
   },
   "devDependencies": {
     "@sapphire/cli": "^1.6.1",

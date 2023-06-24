@@ -1,9 +1,7 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { SlashCommandBooleanOption, SlashCommandBuilder } from 'discord.js';
-@ApplyOptions<Command.Options>({
-	description: 'Check the latency of the bot.'
-})
+import i18next from 'i18next';
+
 export class UserCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand(
@@ -28,9 +26,11 @@ export class UserCommand extends Command {
 			ephemeral: interaction.options.getBoolean('hide') ?? true,
 			fetchReply: true
 		});
-		const content = `Pong! Bot Latency ${Math.round(this.container.client.ws.ping)}ms. API Latency ${
-			reply.createdTimestamp - interaction.createdTimestamp
-		}ms.`;
+		const content = i18next.t('command.common.ping.response', {
+			lng: 'en-US',
+			bot_latency: Math.round(this.container.client.ws.ping),
+			api_latency: reply.createdTimestamp - interaction.createdTimestamp
+		});
 
 		return interaction.editReply({
 			content: content
