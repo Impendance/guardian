@@ -1,0 +1,8 @@
+{
+  "name": "guardian",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Impendance/guardian.git",
+  "author": "dhruvvkaushik <dhruvv.kaushikk@gmail.com>",
+  "license": "MIT"
+}
