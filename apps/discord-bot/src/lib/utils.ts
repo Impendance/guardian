@@ -6,6 +6,7 @@ import {
 	type MessageCommandSuccessPayload
 } from '@sapphire/framework';
 import { cyan } from 'colorette';
+import moment from 'moment';
 import type { APIUser, Guild, User } from 'discord.js';
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
@@ -18,6 +19,39 @@ export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | Ch
 	}
 
 	container.logger.debug(`${successLoggerData.shard} - ${successLoggerData.commandName} ${successLoggerData.author} ${successLoggerData.sentAt}`);
+}
+
+export function parseTime(input: string): moment.Duration | null {
+	const regex = /^(\d+)\s*(s|sec|second|seconds|m|min|mins|minute|minutes|h|hr|hrs|hour|hours|d|day|days)$/i;
+	const match = input.match(regex);
+
+	if (!match) {
+		return null;
+	}
+
+	const value = parseInt(match[1], 10);
+	const unit = match[2].toLowerCase();
+
+	switch (unit) {
+		case 'sec':
+		case 'second':
+		case 'seconds':
+		case 's':
+			return moment.duration(value, 'seconds');
+		case 'min':
+		case 'mins':
+		case 'minute':
+		case 'minutes':
+		case 'm':
+			return moment.duration(value, 'minutes');
+		case 'hr':
+		case 'hour':
+		case 'hours':
+		case 'h':
+			return moment.duration(value, 'hours');
+		default:
+			return null;
+	}
 }
 
 export function getSuccessLoggerData(guild: Guild | null, user: User, command: Command) {

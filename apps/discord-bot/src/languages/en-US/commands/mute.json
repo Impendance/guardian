@@ -1,0 +1,19 @@
+{
+	"single": {
+		"success": ""
+	},
+	"multiple": {
+		"mute_success": "",
+		"modal": {
+			"title": "",
+			"textinput": {
+				"placeholder": "",
+				"default": ["10m, spamming", "10sec, being nonsense", "10hrs, inappropriate", "28 days, max time for a timeout"],
+				"label": ""
+			}
+		}
+	},
+	"error": {
+		"perm": ""
+	}
+}

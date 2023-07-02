@@ -1,4 +1,4 @@
-import { baseEmbed, logBaseEmbed } from './constants';
+import { baseEmbed, confirmEmbed, logBaseEmbed } from './constants';
 
 export const embeds = {
 	dmMuteEmbed: baseEmbed.setTitle('You have been muted in the server'),
@@ -6,5 +6,6 @@ export const embeds = {
 	logsMuteEmbed: logBaseEmbed.setTitle('username'),
 	logsUnmuteEmbed: logBaseEmbed.setTitle('username'),
 	dmBanEmbed: logBaseEmbed.setTitle('You have been banned in the server'),
-	dmUnbanEmbed: logBaseEmbed.setTitle('You have been unbanned in the server')
+	dmUnbanEmbed: logBaseEmbed.setTitle('You have been unbanned in the server'),
+	confirmMutePreviewEmbed: () => confirmEmbed.setDescription('cd').addFields({name: "s", value: 's'}),
 };

@@ -1,7 +1,7 @@
 import { Command } from '@sapphire/framework';
+import { resolveKey } from '@sapphire/plugin-i18next';
 import { SlashCommandBooleanOption, SlashCommandBuilder } from 'discord.js';
-import i18next from 'i18next';
-
+import '../languages/en-US/commands/ping.json';
 export class UserCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand(
@@ -12,8 +12,7 @@ export class UserCommand extends Command {
 					new SlashCommandBooleanOption().setName('hide').setDescription('Whether the response should be ephemeral.').setRequired(false)
 				),
 			{
-				guildIds: [process.env.GUILD_ID!],
-				idHints: ['1122089560390782996']
+				guildIds: [process.env.GUILD_ID!]
 			}
 		);
 	}
@@ -26,14 +25,12 @@ export class UserCommand extends Command {
 			ephemeral: interaction.options.getBoolean('hide') ?? true,
 			fetchReply: true
 		});
-		const content = i18next.t('command.common.ping.response', {
-			lng: 'en-US',
-			bot_latency: Math.round(this.container.client.ws.ping),
+		const content = await resolveKey(interaction, 'commands/ping:success', {
 			api_latency: reply.createdTimestamp - interaction.createdTimestamp
 		});
 
 		return interaction.editReply({
-			content: content
+			content
 		});
 	}
 }
